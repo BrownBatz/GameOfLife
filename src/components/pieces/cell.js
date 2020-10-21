@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import styled from 'styled-components'
 
-function Cell(){
+function Cell(cords, liveList){
     const [aliveDead, setAliveDead] = useState(false);
+    const [coordinates, setCoordinates] = useState(cords)
 
     // stylings
     const WrapperDiv = styled.div`
@@ -26,8 +27,14 @@ function Cell(){
         margin-bottom: 0;
         margin-top: 0;
     `
+
+    let handleOnClick = () => {
+        aliveDead === false ? setAliveDead(true) : setAliveDead(false)
+        console.log(coordinates)
+    }
+
     return(
-        <WrapperDiv onClick={ () => aliveDead === false ? setAliveDead(true) : setAliveDead(false)}>
+        <WrapperDiv onClick={handleOnClick}>
             {aliveDead === false ? <DeadCell /> : <AliveCell />}
         </WrapperDiv>
     )

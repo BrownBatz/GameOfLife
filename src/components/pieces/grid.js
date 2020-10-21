@@ -3,12 +3,17 @@ import Cell from './cell'
 import styled from 'styled-components'
 
 function Grid(){
-    const [gridSize, setGridSize] = useState(25);
-    let emptyGrid = []
-    for (let i = 0; i < gridSize; i++){
-        emptyGrid.push(".")
+    const [gridSize, setGridSize] = useState(30);
+    let aliveList = [];
+    let grid = new Array(gridSize);
+    // generating grid
+    for (let i = 0; i < grid.length; i++){
+        let row = new Array(gridSize)
+        for(let j = 0; j < gridSize; j++){
+            row[j] = {cell: <Cell cords={[i, j]} liveList={aliveList}/>, x: i, y: j}
+        }
+        grid[i] = row
     }
-
 
     // set number of cells, then render based off of those number of cells
 
@@ -18,6 +23,7 @@ function Grid(){
         width: 80%;
         padding: 0;
         margin-top: 50px;
+        min-height: 500px;
     `
     let RowDiv = styled.div`
         display: inline-block;
@@ -27,26 +33,15 @@ function Grid(){
         padding: 0;
         height: 10px;
     `
-    let CellDiv = styled.div`
-        display: inline-block;
-        margin-bottom: 0;
-        margin-top: 0;
-        height: 100%;
-    `
+
     return(
-        <WrapperDiv>
-            {emptyGrid.map(() => {
-                for (let i = 0; i < gridSize; i++){
+        <WrapperDiv className="gridWrapper">
+            {grid.map(row => {
                     return(
                         <RowDiv>
-                            {emptyGrid.map(() => {
-                                for (let j = 0; j < gridSize; j++){
-                                    return(<Cell />)
-                                }
-                            })}
+                            {row.map(item => {return(item.cell)})}
                         </RowDiv>
-                    )
-                }
+                    )          
             })}
         </WrapperDiv>
     )
