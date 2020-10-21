@@ -3,23 +3,21 @@ import Cell from './cell'
 import styled from 'styled-components'
 
 function Grid(){
-    // at least 25 x 25 but i think i want a 50 x 50
-    let grid = []
-    // can change number later
-    // grid creation
-    for (var i = 0; i < 50; i++){
-        var row = []
-        for (var j = 0; j < 50; j++){
-            row.push(<Cell />)
-        }
-        grid.push(row)
+    const [gridSize, setGridSize] = useState(25);
+    let emptyGrid = []
+    for (let i = 0; i < gridSize; i++){
+        emptyGrid.push(".")
     }
+
+
+    // set number of cells, then render based off of those number of cells
 
     // stylings
     let WrapperDiv = styled.div`
         display: inline-block;
         width: 80%;
         padding: 0;
+        margin-top: 50px;
     `
     let RowDiv = styled.div`
         display: inline-block;
@@ -37,12 +35,18 @@ function Grid(){
     `
     return(
         <WrapperDiv>
-            {grid.map(row => {
-                return(
-                    <RowDiv>
-                        {row.map(cell => { return <CellDiv>{cell}</CellDiv>})}
-                    </RowDiv>    
-                )
+            {emptyGrid.map(() => {
+                for (let i = 0; i < gridSize; i++){
+                    return(
+                        <RowDiv>
+                            {emptyGrid.map(() => {
+                                for (let j = 0; j < gridSize; j++){
+                                    return(<Cell />)
+                                }
+                            })}
+                        </RowDiv>
+                    )
+                }
             })}
         </WrapperDiv>
     )
