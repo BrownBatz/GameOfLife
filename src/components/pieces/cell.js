@@ -6,8 +6,8 @@ function Cell(){
 
     // stylings
     const WrapperDiv = styled.div`
-        width: 5px;
-        height: 5px;
+        width: 10px;
+        height: 10px;
         border-style: solid;
         border-color: black;
         border-width: 1px;
