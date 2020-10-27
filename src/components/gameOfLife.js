@@ -4,10 +4,10 @@ import Cell from './pieces/cell'
 import styled from 'styled-components'
 
 function GameOfLife(){
-    const [liveGrid, setLiveGrid] = useState(<Grid />)
-    let currentGrid = liveGrid;
+    const [liveGrid, setLiveGrid] = useState(<Grid />);
+    const [nextGeneration, setNextGeneration] = useState([]);
     function update(){
-        let newBufferGrid = currentGrid;
+        
         // logic to update buffer grid then switch
     }
 
@@ -28,10 +28,10 @@ function GameOfLife(){
     `
 
     return(
-        <WrapperDiv className="gameContainer">
+        <div className="GameContainer">
             {liveGrid}    
-            <NextStepButton><h2>Next Step</h2></NextStepButton>    
-        </WrapperDiv>
+            <button className="NextStepButton"><h2>Next Step</h2></button>    
+        </div>
     )
 }
 
